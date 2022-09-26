@@ -28,9 +28,9 @@ public class Entreprise {
     private Integer effectifs;
     private LocalDate dateFondation;
 
-    public Entreprise(Long id, Long immatriculationRCS, String nom, Integer effectifs, LocalDate dateFondation) {
+    public Entreprise(Long id, Long siret, String nom, Integer effectifs, LocalDate dateFondation) {
         this.id = id;
-        this.siret = immatriculationRCS;
+        this.siret = siret;
         this.nom = nom;
         this.effectifs = effectifs;
         this.dateFondation = dateFondation;
@@ -39,8 +39,8 @@ public class Entreprise {
     public Entreprise() {
     }
 
-    public Entreprise(Long immatriculationRCS, String nom, Integer effectifs, LocalDate dateFondation) {
-        this.siret = immatriculationRCS;
+    public Entreprise(Long siret, String nom, Integer effectifs, LocalDate dateFondation) {
+        this.siret = siret;
         this.nom = nom;
         this.effectifs = effectifs;
         this.dateFondation = dateFondation;
