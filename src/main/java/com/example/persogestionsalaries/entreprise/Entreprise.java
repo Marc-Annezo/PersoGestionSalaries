@@ -23,14 +23,14 @@ public class Entreprise {
             generator = "sequence_entreprise"
     )
     private Long id;
-    private Long immatriculationRCS;
+    private Long siret;
     private String nom;
     private Integer effectifs;
     private LocalDate dateFondation;
 
     public Entreprise(Long id, Long immatriculationRCS, String nom, Integer effectifs, LocalDate dateFondation) {
         this.id = id;
-        this.immatriculationRCS = immatriculationRCS;
+        this.siret = immatriculationRCS;
         this.nom = nom;
         this.effectifs = effectifs;
         this.dateFondation = dateFondation;
@@ -40,7 +40,7 @@ public class Entreprise {
     }
 
     public Entreprise(Long immatriculationRCS, String nom, Integer effectifs, LocalDate dateFondation) {
-        this.immatriculationRCS = immatriculationRCS;
+        this.siret = immatriculationRCS;
         this.nom = nom;
         this.effectifs = effectifs;
         this.dateFondation = dateFondation;
@@ -50,7 +50,7 @@ public class Entreprise {
     public String toString() {
         return "Entreprise{" +
                 "id=" + id +
-                ", immatriculationRCS=" + immatriculationRCS +
+                ", immatriculationRCS=" + siret +
                 ", nom='" + nom + '\'' +
                 ", effectifs=" + effectifs +
                 ", dateFondation=" + dateFondation +

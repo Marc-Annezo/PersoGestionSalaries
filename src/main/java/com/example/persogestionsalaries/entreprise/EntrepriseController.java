@@ -20,7 +20,7 @@ public class EntrepriseController {
     }
 
     @GetMapping
-    public List<Entreprise> getEntreprise() {
-        return entrepriseService.getEntreprise();
+    public List<Entreprise> getEntreprises() {
+        return entrepriseService.getEntreprises();
     }
 }
