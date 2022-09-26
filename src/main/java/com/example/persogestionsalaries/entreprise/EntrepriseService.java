@@ -19,4 +19,8 @@ public class EntrepriseService {
     public List<Entreprise> getEntreprises() {
         return entrepriseRepository.findAll();
     }
+
+    public void addNewEntreprise(Entreprise entreprise) {
+        System.out.println(entreprise);
+    }
 }
