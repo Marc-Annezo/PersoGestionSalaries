@@ -26,4 +26,20 @@ public class EntrepriseController {
     public void addEntreprise(@RequestBody Entreprise entreprise) {
         entrepriseService.addNewEntreprise(entreprise);
     }
+
+    @DeleteMapping(path = "{entrepriseId}")
+    public void deleteEntreprise(@PathVariable("entrepriseId") Long entrepriseId){
+        entrepriseService.deleteEntreprise(entrepriseId);
+
+    }
+
+    @PutMapping(path = "{entrepriseId}")
+    public void updateEntreprise (
+            @PathVariable("entrepriseId") Long entrepriseId,
+            @RequestParam(required = false) String nom,
+            @RequestParam(required = false) LocalDate dateFondation) {
+
+        entrepriseService.updateEntreprise(entrepriseId, nom, dateFondation);
+    }
+
 }
