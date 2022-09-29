@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EntrepriseService {
@@ -21,6 +22,12 @@ public class EntrepriseService {
     }
 
     public void addNewEntreprise(Entreprise entreprise) {
-        System.out.println(entreprise);
+        Optional<Entreprise> entrepriseBySiret = entrepriseRepository.findEntrepriseBySiret(entreprise.getSiret());
+
+        if(entrepriseBySiret.isPresent()){
+            throw new IllegalStateException("l'entreprise existe déjà");
+        }
+
+        entrepriseRepository.save(entreprise);
     }
 }
