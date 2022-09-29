@@ -25,7 +25,7 @@ public class EntrepriseService {
     public void addNewEntreprise(Entreprise entreprise) {
         Optional<Entreprise> entrepriseBySiret = entrepriseRepository.findEntrepriseBySiret(entreprise.getSiret());
 
-        if(entrepriseBySiret.isPresent()){
+        if (entrepriseBySiret.isPresent()) {
             throw new IllegalStateException("l'entreprise existe déjà");
         }
 
@@ -35,7 +35,7 @@ public class EntrepriseService {
     public void deleteEntreprise(Long entrepriseId) {
         boolean exists = entrepriseRepository.existsById(entrepriseId);
 
-        if(!exists) {
+        if (!exists) {
             throw new IllegalStateException("L'entreprise n'existe pas");
         }
 
@@ -50,20 +50,23 @@ public class EntrepriseService {
 
 
         // On vérifie que le nom existe, est plus long que 0 caractères et qu'il n'est pas équivalent à la donnée modifiée
-        if(!nom.isBlank()
-                && nom.length()>0
+        if (!nom.isBlank()
+                && nom.length() > 0
                 && !nom.equals(entrepriseAModifier.getNom())) {
+            Optional<Entreprise> entreprise = entrepriseRepository.findEntrepriseByNom(nom);
+
+            if (entreprise.isPresent()) {
+                throw new IllegalStateException("le nom est déjà pris");
+            }
+
             entrepriseAModifier.setNom(nom);
         }
 
         // On vérifie que la date de fondation est différente de celle déjà insérée, et qu'elle est antérieure à aujourd'hui).
-        if(!dateFondation.isEqual(entrepriseAModifier.getDateFondation())
-            && dateFondation.isBefore(LocalDate.now())) {
+        if (dateFondation != null
+                && !dateFondation.isEqual(entrepriseAModifier.getDateFondation())
+                && dateFondation.isBefore(LocalDate.now())) {
             entrepriseAModifier.setDateFondation(dateFondation);
         }
-        entrepriseRepository.save(entrepriseAModifier);
-
-
-
     }
 }
